@@ -25,6 +25,8 @@ Resources:
         - AWSLambdaBasicExecutionRole
         - DynamoDBCrudPolicy:
             TableName: TarefasTable
+    Metadata:
+      RedeployVersion: v2  # Força o redeploy ao mudar este valor
 
   TarefasTable:
     Type: AWS::DynamoDB::Table
