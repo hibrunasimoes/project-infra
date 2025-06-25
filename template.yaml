@@ -4,7 +4,7 @@ Description: Infraestrutura do projeto CRUD Serverless
 
 Globals:
   Function:
-    Runtime: dotnet6
+    Runtime: dotnet8
     Timeout: 10
     MemorySize: 256
 
