@@ -3,7 +3,7 @@ name: Deploy Infraestrutura Serverless
 on:
   push:
     branches:
-      - main
+      - master
 
 jobs:
   deploy:
