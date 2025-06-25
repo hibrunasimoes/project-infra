@@ -1,0 +1,39 @@
+AWSTemplateFormatVersion: '2010-09-09'
+Transform: AWS::Serverless-2016-10-31
+Description: Infraestrutura do projeto CRUD Serverless
+
+Globals:
+  Function:
+    Runtime: dotnet6
+    Timeout: 10
+    MemorySize: 256
+
+Resources:
+  CrudFunction:
+    Type: AWS::Serverless::Function
+    Properties:
+      FunctionName: CrudFunction
+      Handler: CrudLambda::CrudLambda.Function::FunctionHandler
+      CodeUri: s3://meu-crud-serverless-bruna/lambda-placeholder.zip  # código provisório
+      Events:
+        CreateTask:
+          Type: Api
+          Properties:
+            Path: /tarefas
+            Method: POST
+      Policies:
+        - AWSLambdaBasicExecutionRole
+        - DynamoDBCrudPolicy:
+            TableName: TarefasTable
+
+  TarefasTable:
+    Type: AWS::DynamoDB::Table
+    Properties:
+      TableName: TarefasTable
+      BillingMode: PAY_PER_REQUEST
+      AttributeDefinitions:
+        - AttributeName: Id
+          AttributeType: S
+      KeySchema:
+        - AttributeName: Id
+          KeyType: HASH
